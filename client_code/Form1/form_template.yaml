@@ -32,7 +32,7 @@ components:
       properties: {placeholder: petal_width}
       type: TextBox
     - event_bindings: {click: submitllm_click}
-      layout_properties: {grid_position: 'PKGMIM,WAPTKT'}
+      layout_properties: {grid_position: 'SLVTKR,JMZFWT'}
       name: submitllm
       properties: {text: Submit to LLM}
       type: Button
