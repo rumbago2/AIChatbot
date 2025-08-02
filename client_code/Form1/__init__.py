@@ -5,7 +5,6 @@ import anvil.server
 class Form1(Form1Template):
   def __init__(self, **properties):
     self.init_components(**properties)
-
     # Inicializa chat y estado
     self.chat_history = []
     self.chat_display.content = ""
