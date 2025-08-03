@@ -6,7 +6,7 @@ components:
       properties: {text: 'Enter your question or prompt :'}
       type: Label
     - event_bindings: {pressed_enter: user_prompt_pressed_enter}
-      layout_properties: {grid_position: 'WBMOAC,QHRZRL'}
+      layout_properties: {grid_position: 'VNTDOM,QKVMTC'}
       name: user_prompt
       properties:
         margin: ['8', '2', '16', '2']
@@ -55,7 +55,7 @@ components:
       name: status_label
       properties: {}
       type: Label
-    layout_properties: {grid_position: 'EBKAGP,OICXSL'}
+    layout_properties: {grid_position: 'RYUYUV,EDGNQB'}
     name: outlined_card_1
     properties:
       role: outlined-card
