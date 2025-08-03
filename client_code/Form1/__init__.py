@@ -34,11 +34,11 @@ class Form1(Form1Template):
         alert("The prompt and LLM model cannot be empty.", title="Input Error")
         return
 
-      pl = float(self.petal_length.text) if self.petal_length.text else 0.0
-      pw = float(self.petal_width.text) if self.petal_width.text else 0.0
+      pl = int(self.petal_length.text) if self.petal_length.text else 0
+      pw = self.petal_width.text if self.petal_width.text else ""
 
     except ValueError:
-      alert("Petal Length and Petal Width must be valid numbers.", title="Input Error")
+      alert("Petal Length must ve integer and Petal Width must be text.", title="Input Error")
       return
 
     self.status_label.visible = True
