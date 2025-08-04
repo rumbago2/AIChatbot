@@ -108,6 +108,8 @@ class Form1(Form1Template):
       else:
        # --- TRACKING LINE 4 ---
         print("CLIENT: Result is valid data. Populating data grid.")
+        for row in result['data']:
+          print(f"Row: {row}")
         self.history_grid.items = result['data']
         self.status_label.text = f"✅ Loaded {len(result['data'])} records."
     except Exception as e:
