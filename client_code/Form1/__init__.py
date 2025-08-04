@@ -86,6 +86,29 @@ class Form1(Form1Template):
     self.status_label.text = "🗑️ Chat cleared."
     print("Chat history cleared.")
 
-  def data_grid_1_show(self, **event_args):
-    """This method is called when the data grid is shown on the screen"""
-    pass
+  def show_history_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    # This new function goes inside your Form1 class in the client code
+    """This method is called when the user clicks the 'Show History' button."""
+    self.status_label.visible = True
+    self.status_label.text = "⏳ Fetching history from database..."
+    try:
+     # Call the backend function with action_flag = 2
+      # The other arguments are not needed for this action, so we pass placeholders.
+      result = anvil.server.call('ask_llm',
+                               user_prompt=None,
+                               llm_name=None,
+                               action_flag=2,  # This tells the backend to fetch data
+                               session_name=None,
+                               chat_history=None)
+
+      if "error" in result:
+        self.status_label.text = f"❌ Error: {result['error']}"
+        alert(f"Could not load history: {result['error']}")
+      else:
+      # The magic happens here: assign the list of dictionaries to the grid's `items` property
+        self.history_grid.items = result['data']
+        self.status_label.text = f"✅ Loaded {len(result['data'])} records."
+    except Exception as e:
+      self.status_label.text = f"❌ Anvil connection error: "
+      alert(f"An unexpected error occurred: ")

@@ -1,57 +1,75 @@
 components:
 - components:
   - components:
-    - layout_properties: {grid_position: 'EDXCFW,AWYVVO'}
+    - layout_properties: {grid_position: 'TLBDVS,ZJYXCT EDXCFW,AWYVVO'}
       name: label_1
       properties: {text: 'Enter your question or prompt :'}
       type: Label
     - event_bindings: {pressed_enter: user_prompt_pressed_enter}
-      layout_properties: {grid_position: 'VNTDOM,QKVMTC'}
+      layout_properties: {grid_position: 'TLBDVS,ZJYXCT VNTDOM,QKVMTC'}
       name: user_prompt
       properties:
         margin: ['8', '2', '16', '2']
         placeholder: Enter your question/prompt here
         spacing_above: small
       type: TextBox
-    - layout_properties: {grid_position: 'CGYAPA,NLMTQI'}
+    - layout_properties: {grid_position: 'TLBDVS,ZJYXCT CGYAPA,NLMTQI'}
       name: label_2
       properties: {text: 'Select the LLM from the list:'}
       type: Label
     - event_bindings: {change: llm_name_change}
-      layout_properties: {grid_position: 'SRCNVM,HPZTMN'}
+      layout_properties: {grid_position: 'TLBDVS,ZJYXCT SRCNVM,HPZTMN'}
       name: llm_name
       properties:
         items: [gemini-2.5-flash-preview-05-20, gemini-2.5-pro-preview-06-05, gemini-2.0-flash-lite, gemini-2.5-pro, gemini-2.5-flash, deepseek, Llama-3.1, Qwen3, mistral, gpt-3.5-turbo, gpt-4.1, gpt-4-turbo, gpt-4o, gpt-4o-mini]
       type: DropDown
-    - layout_properties: {grid_position: 'HOVOUP,KWAPHM'}
+    - layout_properties: {grid_position: 'TLBDVS,ZJYXCT HOVOUP,KWAPHM'}
       name: petal_length
       properties: {placeholder: petal_length}
       type: TextBox
-    - layout_properties: {grid_position: 'ARZTGL,OMBWQN'}
+    - layout_properties: {grid_position: 'TLBDVS,ZJYXCT ARZTGL,OMBWQN'}
       name: petal_width
       properties: {placeholder: petal_width}
       type: TextBox
     - event_bindings: {click: submitllm_click}
-      layout_properties: {grid_position: 'SLVTKR,JMZFWT'}
+      layout_properties: {grid_position: 'TLBDVS,ZJYXCT SLVTKR,JMZFWT'}
       name: submitllm
       properties:
         spacing:
           padding: [null, '22', null, null]
         text: Submit to LLM
       type: Button
-    - layout_properties: {grid_position: 'VHMUFH,LMDZGQ'}
+    - event_bindings: {click: show_history_button_click}
+      layout_properties: {grid_position: 'TLBDVS,ZJYXCT SLVTKR,PTRBNQ'}
+      name: show_history_button
+      properties: {text: Show History}
+      type: Button
+    - layout_properties: {grid_position: 'TLBDVS,ZJYXCT VHMUFH,LMDZGQ'}
       name: llmresponse
       properties: {text: 'LLM response :'}
       type: Label
-    - layout_properties: {grid_position: 'QRMAQD,AHCBEW'}
+    - layout_properties: {grid_position: 'TLBDVS,ZJYXCT QRMAQD,AHCBEW'}
       name: species_label
       properties: {text: '', visible: false}
       type: Label
-    - layout_properties: {grid_position: 'BGWBMA,CTMPGR'}
+    - layout_properties: {grid_position: 'TLBDVS,ZJYXCT BGWBMA,CTMPGR'}
       name: chat_display
       properties: {}
       type: RichText
-    - layout_properties: {grid_position: 'VBSPQQ,QYQTZA'}
+    - components:
+      - name: repeating_panel_1
+        properties: {item_template: Form1.RowTemplate2}
+        type: RepeatingPanel
+      layout_properties: {grid_position: 'TLBDVS,QBYVMH'}
+      name: history_grid
+      properties:
+        columns:
+        - {data_key: column_1, id: JKSDUP, title: session_name}
+        - {data_key: column_2, id: VJQQOR, title: llm_name}
+        - {data_key: column_3, id: OJLQEN, title: first_prompt}
+        - {data_key: column_4, id: HJLSOL, title: save_timestamp}
+      type: DataGrid
+    - layout_properties: {grid_position: 'TLBDVS,ZJYXCT VBSPQQ,QYQTZA'}
       name: status_label
       properties: {}
       type: Label
