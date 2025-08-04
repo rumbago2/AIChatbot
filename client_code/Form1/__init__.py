@@ -90,8 +90,6 @@ class Form1(Form1Template):
     """This method is called when the user clicks the 'Show History' button."""
     self.status_label.visible = True
     self.status_label.text = "⏳ Fetching history from database..."
-    # --- TRACKING LINE 1 ---
-    print("CLIENT: About to call 'ask_llm' with action_flag=2.")
     try:
       # Call the backend function with action_flag = 2
       result = anvil.server.call('ask_llm',
