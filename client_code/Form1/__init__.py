@@ -114,13 +114,7 @@ class Form1(Form1Template):
         self.history_grid.columns = result['data']
         self.status_label.text = f"✅ Loaded {len(result['data'])} records."
         self.status_label.text = f"Data: {result['data']} "
-        # Agrega columnas si no existen
-        if not self.history_grid.columns:
-          self.history_grid.columns = [
-            { "id": "session_name", "title": "Session", "data_key": "session_name" },
-            { "id": "llm_name", "title": "Model", "data_key": "llm_name" },
-            { "id": "first_prompt", "title": "Prompt", "data_key": "first_prompt" }]
-          
+        
     except Exception as e:
       # --- TRACKING LINE 5 (The one that's likely firing) ---
       print(f"CLIENT: The 'anvil.server.call' failed entirely. Exception: ")
