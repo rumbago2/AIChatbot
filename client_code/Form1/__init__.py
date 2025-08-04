@@ -85,3 +85,7 @@ class Form1(Form1Template):
     self.chat_display.content = ""
     self.status_label.text = "🗑️ Chat cleared."
     print("Chat history cleared.")
+
+  def data_grid_1_show(self, **event_args):
+    """This method is called when the data grid is shown on the screen"""
+    pass
