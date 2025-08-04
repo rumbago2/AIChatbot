@@ -67,7 +67,6 @@ components:
         - {data_key: column_1, id: JKSDUP, title: session_name}
         - {data_key: column_2, id: VJQQOR, title: llm_name}
         - {data_key: column_3, id: OJLQEN, title: first_prompt}
-        - {data_key: column_4, id: HJLSOL, title: save_timestamp}
       type: DataGrid
     - layout_properties: {grid_position: 'TLBDVS,ZJYXCT VBSPQQ,QYQTZA'}
       name: status_label

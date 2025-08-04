@@ -87,27 +87,34 @@ class Form1(Form1Template):
     print("Chat history cleared.")
 
   def show_history_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    # This new function goes inside your Form1 class in the client code
     """This method is called when the user clicks the 'Show History' button."""
     self.status_label.visible = True
     self.status_label.text = "⏳ Fetching history from database..."
+    # --- TRACKING LINE 1 ---
+    print("CLIENT: About to call 'ask_llm' with action_flag=2.")
     try:
-     # Call the backend function with action_flag = 2
-      # The other arguments are not needed for this action, so we pass placeholders.
+      # Call the backend function with action_flag = 2
       result = anvil.server.call('ask_llm',
                                user_prompt=None,
                                llm_name=None,
-                               action_flag=2,  # This tells the backend to fetch data
+                               action_flag=2,
                                session_name=None,
                                chat_history=None)
-      if "error" in result:
+      # --- TRACKING LINE 2 ---
+      print(f"CLIENT: Server call successful. Received result: ")
+      if result and "error" in result:
+        # --- TRACKING LINE 3 ---
+        print(f"CLIENT: Server returned a known error: {result['error']}")
         self.status_label.text = f"❌ Error: {result['error']}"
         alert(f"Could not load history: {result['error']}")
       else:
-      # The magic happens here: assign the list of dictionaries to the grid's `items` property
+       # --- TRACKING LINE 4 ---
+        print("CLIENT: Result is valid data. Populating data grid.")
         self.history_grid.items = result['data']
         self.status_label.text = f"✅ Loaded {len(result['data'])} records."
     except Exception as e:
-      self.status_label.text = f"❌ Anvil connection error: "
-      alert(f"An unexpected error occurred: ")
+      # --- TRACKING LINE 5 (The one that's likely firing) ---
+      print(f"CLIENT: The 'anvil.server.call' failed entirely. Exception: ")
+      # This is the line that generates your error message
+      self.status_label.text = f"❌ Anvil connection error." 
+      alert(f"A connection error occurred while communicating with the server. Please check the App Logs for server-side errors. Exception: ")
