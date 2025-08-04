@@ -38,7 +38,7 @@ class Form1(Form1Template):
       pw = self.petal_width.text if self.petal_width.text else ""
 
     except ValueError:
-      alert("Petal Length must ve integer and Petal Width must be text.", title="Input Error")
+      alert("Option should be integer and session name text.", title="Input Error")
       return
 
     self.status_label.visible = True
