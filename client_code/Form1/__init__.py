@@ -101,7 +101,6 @@ class Form1(Form1Template):
                                action_flag=2,  # This tells the backend to fetch data
                                session_name=None,
                                chat_history=None)
-
       if "error" in result:
         self.status_label.text = f"❌ Error: {result['error']}"
         alert(f"Could not load history: {result['error']}")
