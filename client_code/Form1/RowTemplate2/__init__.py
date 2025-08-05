@@ -9,6 +9,4 @@ class RowTemplate2(RowTemplate2Template):
     self.init_components(**properties)
     print(self.item)  # Should print your dictionary to console for each row
     if self.item:
-      self.label_session.text = self.item.get('session_name', 'N/A')
-      self.label_llm.text = self.item.get('llm_name', 'N/A')
-      self.label_prompt.text = self.item.get('first_prompt', 'N/A')
+      self.repeating_panel_1.items = [{'session_name': 'TEST12', 'llm_name': 'deepseek', 'first_prompt': 'what is the model name and ID answering this prompt?'}]
