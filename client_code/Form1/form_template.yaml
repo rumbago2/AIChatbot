@@ -35,23 +35,27 @@ components:
       name: petal_length
       properties: {enabled: false, placeholder: Option field - Ingore}
       type: TextBox
+    - layout_properties: {grid_position: 'SLVTKR,ZUBMEN AMVFFS,WRYORI'}
+      name: save_chat
+      properties: {text: Save Chat}
+      type: Button
     - event_bindings: {click: submitllm_click}
-      layout_properties: {grid_position: 'SLVTKR,JMZFWT'}
+      layout_properties: {grid_position: 'SLVTKR,ZUBMEN SAYYOA,EQGMLR'}
       name: submitllm
       properties:
         spacing:
           padding: [null, '22', null, null]
         text: Submit to LLM
       type: Button
-    - event_bindings: {click: load_session_button_click}
-      layout_properties: {grid_position: 'SLVTKR,ZUBMEN'}
-      name: load_session_button
-      properties: {text: 🔁 Load Chat History}
-      type: Button
     - event_bindings: {click: show_history_button_click}
-      layout_properties: {grid_position: 'SLVTKR,PTRBNQ'}
+      layout_properties: {grid_position: 'SLVTKR,PTRBNQ KDVLCM,UBITCE'}
       name: show_history_button
       properties: {text: Show saved Chats}
+      type: Button
+    - event_bindings: {click: load_session_button_click}
+      layout_properties: {grid_position: 'SLVTKR,PTRBNQ KDVLCM,CZEWEW'}
+      name: load_session_button
+      properties: {text: 🔁 Load Chat History}
       type: Button
     - layout_properties: {grid_position: 'VHMUFH,LMDZGQ'}
       name: llmresponse
