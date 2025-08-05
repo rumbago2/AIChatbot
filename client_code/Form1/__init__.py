@@ -88,9 +88,13 @@ class Form1(Form1Template):
 
   def show_history_button_click(self, **event_args):
     """This method is called when the user clicks the 'Show History' button."""
+    self.chat_history = []
+    self.chat_display.content = ""
     self.status_label.visible = True
     self.status_label.text = "⏳ Fetching history from database..."
     try:
+      self.chat_history = []
+      self.chat_display.content = ""
     # Call the backend function with action_flag = 2
       result = anvil.server.call('ask_llm',
                                user_prompt=None,
@@ -152,6 +156,7 @@ class Form1(Form1Template):
         self._update_chat_display()
         self.status_label.text = f"✅ Loaded context with {len(self.chat_history)} turns."
         print("CLIENT: Chat history loaded successfully.")
+        alert("Chat history loaded from the DB.")
       else:
         self.status_label.text = "⚠️ No chat history found."
         alert("Session found, but no chat history available.")
@@ -192,6 +197,7 @@ class Form1(Form1Template):
       else:
         self.status_label.text = f"✅ Chat saved successfully as '{session_name}'"
         print("CLIENT: Chat saved to database.")
+        alert("Chat saved in the DB.")
 
     except Exception as e:
       print(f"CLIENT: Exception saving chat history: {e}")
