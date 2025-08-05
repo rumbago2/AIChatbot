@@ -35,7 +35,8 @@ components:
       name: petal_length
       properties: {enabled: false, placeholder: Option field - Ingore}
       type: TextBox
-    - layout_properties: {grid_position: 'SLVTKR,ZUBMEN AMVFFS,WRYORI'}
+    - event_bindings: {click: save_chat_click}
+      layout_properties: {grid_position: 'SLVTKR,ZUBMEN AMVFFS,WRYORI'}
       name: save_chat
       properties: {text: Save Chat}
       type: Button
