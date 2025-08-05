@@ -126,14 +126,11 @@ class Form1(Form1Template):
   # --- BEGIN: Botón para cargar sesión previa por nombre ---
   def load_session_button_click(self, **event_args):
     session_name = self.petal_width.text.strip()  # Cambia esto si usas otro campo para el nombre de sesión
-
     if not session_name:
       alert("Please enter a session name to load.")
       return
-
     self.status_label.visible = True
     self.status_label.text = f"⏳ Loading chat history for session: {session_name}..."
-
     try:
       result = anvil.server.call(
       'ask_llm',
@@ -143,14 +140,11 @@ class Form1(Form1Template):
       session_name=session_name,
       chat_history=None
     )
-
-      print("CLIENT: Full result from backend:", result)
-
+      #print("CLIENT: Full result from backend:", result)
       if result and "error" in result:
        self.status_label.text = f"❌ Error: {result['error']}"
        alert(f"Could not load chat: {result['error']}")
        return
-
       if "chat_history" in result:
         self.chat_history = result['chat_history']
         self._update_chat_display()
@@ -159,7 +153,6 @@ class Form1(Form1Template):
       else:
         self.status_label.text = "⚠️ No chat history found."
         alert("Session found, but no chat history available.")
-
     except Exception as e:
       print(f"CLIENT: Exception loading chat history: {e}")
       self.status_label.text = f"❌ Failed to load saved chat: {e}"
