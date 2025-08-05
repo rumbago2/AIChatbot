@@ -104,7 +104,7 @@ class Form1(Form1Template):
        self.status_label.text = f"❌ Error: {result['error']}"
        alert(f"Could not load history: {result['error']}")
       else:
-        self.history_grid.items = result['data']
+        #self.history_grid.items = result['data']
         #self.history_grid.items = [{'session_name': 'TEST12', 'llm_name': 'deepseek', 'first_prompt': 'what is the model name and ID answering this prompt?'}]
         #self.history_grid.items = [{'session_name': 'sesion1', 'llm_name': 'mistral','first_prompt': 'my prompt'}, {'session_name': 'sesion2', 'llm_name': 'deepseek','first_prompt': 'my prompt 2'}]
         print("CLIENT: Data assigned to grid:")
