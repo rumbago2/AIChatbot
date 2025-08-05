@@ -105,22 +105,14 @@ class Form1(Form1Template):
        self.status_label.text = f"❌ Error: {result['error']}"
        alert(f"Could not load history: {result['error']}")
       else:
-       # ✅ First define columns (before assigning items!)
-        self.history_grid.columns = [
-        {"id": "session_name", "title": "Session", "data_key": "session_name"},
-        {"id": "llm_name", "title": "Model", "data_key": "llm_name"},
-        {"id": "first_prompt", "title": "Prompt", "data_key": "first_prompt"},
-        ]
-
-      # ✅ Then assign the data
-      self.history_grid.items = result['data']
-
-      # ✅ Optional tracking
-      print("CLIENT: Data assigned to grid:")
-      for row in result['data']:
-        print(row)
-
+        #self.history_grid.items = result['data']
+        self.history_grid.items = [{'session_name': 'TEST12', 'llm_name': 'deepseek', 'first_prompt': 'what is the model name and ID answering this prompt?'}]
+        #self.history_grid.items = [{'session_name': 'sesion1', 'llm_name': 'mistral','first_prompt': 'my prompt'}, {'session_name': 'sesion2', 'llm_name': 'deepseek','first_prompt': 'my prompt 2'}]
+        print("CLIENT: Data assigned to grid:")
+        for row in result['data']:
+          print(row)
       self.status_label.text = f"✅ Loaded {len(result['data'])} records."
+      
     except Exception as e:
       print(f"CLIENT: Exception during server call: {e}")
       self.status_label.text = f"❌ Failed to load data: {e}"
