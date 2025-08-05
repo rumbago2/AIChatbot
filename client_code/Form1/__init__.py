@@ -156,5 +156,5 @@ class Form1(Form1Template):
     except Exception as e:
       print(f"CLIENT: Exception loading chat history: {e}")
       self.status_label.text = f"❌ Failed to load saved chat: {e}"
-      alert(f"An error occurred while loading the saved session.")
+      #alert(f"An error occurred while loading the saved session.")
 # --- END: Botón para cargar sesión previa ---
