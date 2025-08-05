@@ -8,8 +8,8 @@ class RowTemplate1(RowTemplate1Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Check if self.item is set (Anvil sets this automatically for each row)
-    if self.item is not None:
-      self.label_session.text = self.item['session_name']
-      self.label_llm.text = self.item['llm_name']
-      self.label_prompt.text = self.item['first_prompt']
+    if self.item:
+      self.label_session.text = self.item.get('session_name', 'N/A')
+      self.label_llm.text = self.item.get('llm_name', 'N/A')
+      self.label_prompt.text = self.item.get('first_prompt', 'N/A')
 
