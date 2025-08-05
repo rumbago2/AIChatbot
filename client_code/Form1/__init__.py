@@ -122,61 +122,46 @@ class Form1(Form1Template):
       # This is the line that generates your error message
       self.status_label.text = f"❌ Anvil connection error." 
       alert(f"A connection error occurred while communicating with the server. Please check the App Logs for server-side errors. Exception: ")
-  
-  def load_saved_chat_history(self, session_name):
-    """Carga el historial completo de una sesión pasada desde BigQuery."""
+
+  # --- BEGIN: Botón para cargar sesión previa por nombre ---
+  def load_session_button_click(self, **event_args):
+    session_name = self.petal_width.text.strip()  # Cambia esto si usas otro campo para el nombre de sesión
+
     if not session_name:
-      alert("No session name provided.")
+      alert("Please enter a session name to load.")
       return
 
     self.status_label.visible = True
     self.status_label.text = f"⏳ Loading chat history for session: {session_name}..."
 
     try:
-      result = anvil.server.call('ask_llm',
-                                 user_prompt=None,
-                                 llm_name=None,
-                                 action_flag=3,
-                                 session_name=session_name,
-                                 chat_history=None)
+      result = anvil.server.call(
+      'ask_llm',
+      user_prompt=None,
+      llm_name=None,
+      action_flag=3,
+      session_name=session_name,
+      chat_history=None
+    )
+
+      print("CLIENT: Full result from backend:", result)
 
       if result and "error" in result:
-        self.status_label.text = f"❌ Error: {result['error']}"
-        alert(f"Could not load chat: {result['error']}")
-        return
+       self.status_label.text = f"❌ Error: {result['error']}"
+       alert(f"Could not load chat: {result['error']}")
+       return
 
       if "chat_history" in result:
-        print("CLIENT: Data assigned to grid:")
-        for row in result['chat_history']:
-          print(row)
-        self.status_label.text = f"✅ Loaded {len(result['data'])} records."
         self.chat_history = result['chat_history']
         self._update_chat_display()
         self.status_label.text = f"✅ Loaded context with {len(self.chat_history)} turns."
         print("CLIENT: Chat history loaded successfully.")
+      else:
+        self.status_label.text = "⚠️ No chat history found."
+        alert("Session found, but no chat history available.")
 
     except Exception as e:
       print(f"CLIENT: Exception loading chat history: {e}")
       self.status_label.text = f"❌ Failed to load saved chat: {e}"
       alert(f"An error occurred while loading the saved session.")
-
-  def load_session_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    def load_session_button_click(self, **event_args):
-      """Carga el historial de chat para la sesión ingresada por el usuario"""
-    session_name = self.petal_width.text.strip()
-    if not session_name:
-      alert("Please enter a session name.")
-      return
-      
-    if "chat_history" in result:
-      self.chat_history = result['chat_history']
-      self._update_chat_display()
-      self.status_label.text = f"✅ Loaded context with {len(self.chat_history)} turns."
-    else:
-      self.status_label.text = "⚠️ No chat history found."
-      alert("Session found, but no chat history available.")
-    print("CLIENT: Full result from backend:", result)
-
-    self.load_saved_chat_history(session_name)
-
+# --- END: Botón para cargar sesión previa ---
