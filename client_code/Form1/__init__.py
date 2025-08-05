@@ -98,7 +98,6 @@ class Form1(Form1Template):
                                action_flag=2,
                                session_name=None,
                                chat_history=None)
-      print("CLIENT: Server call successful. First row:", result['data'][0])
 
       if result and "error" in result:
        print(f"CLIENT: Server returned error: {result['error']}")
