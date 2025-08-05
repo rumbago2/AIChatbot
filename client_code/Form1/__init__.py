@@ -10,6 +10,18 @@ class Form1(Form1Template):
     self.chat_display.content = ""
     self.status_label.text = ""
     self.status_label.visible = False
+    
+    def form_show(self, **event_args):
+      self.history_grid.columns = [
+       {"id": "session_name", "title": "Session", "data_key": "session_name"},
+       {"id": "llm_name", "title": "Model", "data_key": "llm_name"},
+       {"id": "first_prompt", "title": "Prompt", "data_key": "first_prompt"},
+       ]
+      self.history_grid.items = [{
+       'session_name': 'TEST12',
+       'llm_name': 'deepseek',
+        'first_prompt': 'what is the model name and ID answering this prompt?'
+       }]
 
   def submitllm_click(self, **event_args):
     self._handle_prompt_submission()

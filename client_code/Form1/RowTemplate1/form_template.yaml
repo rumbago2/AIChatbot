@@ -1,3 +1,15 @@
-components: []
+components:
+- layout_properties: {column: JKSDUP}
+  name: session_name
+  properties: {}
+  type: Label
+- layout_properties: {column: VJQQOR}
+  name: llm_name
+  properties: {}
+  type: Label
+- layout_properties: {column: OJLQEN}
+  name: first_prompt
+  properties: {}
+  type: Label
 container: {type: DataRowPanel}
 is_package: true
