@@ -39,6 +39,11 @@ components:
           padding: [null, '22', null, null]
         text: Submit to LLM
       type: Button
+    - event_bindings: {click: load_session_button_click}
+      layout_properties: {grid_position: 'SLVTKR,ZUBMEN'}
+      name: load_session_button
+      properties: {text: 🔁 Load Session}
+      type: Button
     - event_bindings: {click: show_history_button_click}
       layout_properties: {grid_position: 'SLVTKR,PTRBNQ'}
       name: show_history_button
