@@ -109,8 +109,9 @@ class Form1(Form1Template):
         #self.history_grid.items = [{'session_name': 'sesion1', 'llm_name': 'mistral','first_prompt': 'my prompt'}, {'session_name': 'sesion2', 'llm_name': 'deepseek','first_prompt': 'my prompt 2'}]
         print("CLIENT: Data assigned to grid:")
         for row in result['data']:
-          print(row)
+         print(row)
       self.status_label.text = f"✅ Loaded {len(result['data'])} records."
+      self.status_label.text = f"✅ Chat history: {result['data']}"
       
     except Exception as e:
       print(f"CLIENT: Exception during server call: {e}")
