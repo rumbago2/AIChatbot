@@ -111,8 +111,9 @@ class Form1(Form1Template):
         for row in result['data']:
          print(row)
       self.status_label.text = f"✅ Loaded {len(result['data'])} records."
-      self.status_label.text = f"✅ Chat history: {result['data']}"
-      
+      self.status_label.text = "✅ Chat history:\n" + "\n".join(
+        [f"- {row['session_name']} | {row['llm_name']} | {row['first_prompt']}" for row in result["data"]]
+      )
     except Exception as e:
       print(f"CLIENT: Exception during server call: {e}")
       self.status_label.text = f"❌ Failed to load data: {e}"
