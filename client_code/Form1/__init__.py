@@ -161,44 +161,6 @@ class Form1(Form1Template):
       #alert(f"An error occurred while loading the saved session.")
 # --- END: Botón para cargar sesión previa ---
 
-    def save_chat_click(self, **event_args):
-      """Guarda el historial de chat actual en la base de datos."""
-      session_name = self.petal_width.text.strip()  # O usa otro campo de tu formulario si prefieres
-      llm_name = self.llm_name.selected_value
-
-      if not session_name or not llm_name:
-        alert("You must enter a session name and select an LLM model before saving.")
-        return
-
-      if not self.chat_history:
-        alert("There is no chat history to save.")
-        return
-
-      self.status_label.visible = True
-      self.status_label.text = f"💾 Saving chat session '{session_name}'..."
-
-    try:
-      result = anvil.server.call(
-        'ask_llm',
-        user_prompt=None,
-        llm_name=llm_name,
-        action_flag=1,
-        session_name=session_name,
-        chat_history=self.chat_history
-      )
-
-      if result and "error" in result:
-        self.status_label.text = f"❌ Save failed: {result['error']}"
-        alert(f"Could not save chat: {result['error']}")
-      else:
-        self.status_label.text = f"✅ Chat saved successfully as '{session_name}'"
-        print("CLIENT: Chat saved to database.")
-
-    except Exception as e:
-      print(f"CLIENT: Exception saving chat history: {e}")
-      self.status_label.text = f"❌ Error saving chat: {e}"
-      alert("An unexpected error occurred while saving the chat.")
-
   def save_chat_click(self, **event_args):
     session_name = self.petal_width.text.strip()  # O usa otro campo de tu formulario si prefieres
     llm_name = self.llm_name.selected_value
