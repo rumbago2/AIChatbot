@@ -3,23 +3,15 @@ components:
   - components:
     - layout_properties: {grid_position: 'EDXCFW,AWYVVO'}
       name: label_1
-      properties: {text: 'Enter your question or prompt :'}
+      properties: {bold: true, font_size: 16, text: 'Enter your question or prompt :'}
       type: Label
-    - event_bindings: {pressed_enter: user_prompt1_pressed_enter}
-      layout_properties: {grid_position: 'VNTDOM,QKVMTC'}
-      name: user_prompt1
-      properties:
-        margin: ['8', '2', '16', '2']
-        placeholder: Enter your question/prompt here
-        spacing_above: small
-      type: TextBox
     - layout_properties: {grid_position: 'NKAJYH,RPIVIO'}
       name: user_prompt
-      properties: {height: 197.4749755859375, text: Enter your question/prompt here}
+      properties: {font_size: 10, height: 171.89990234375, text: Enter your question/prompt here}
       type: TextArea
     - layout_properties: {grid_position: 'CGYAPA,NLMTQI'}
       name: label_2
-      properties: {text: 'Select the LLM from the list:'}
+      properties: {bold: true, font_size: 16, text: 'Select the LLM from the list:'}
       type: Label
     - event_bindings: {change: llm_name_change}
       layout_properties: {grid_position: 'SRCNVM,HPZTMN'}
@@ -29,20 +21,21 @@ components:
       type: DropDown
     - layout_properties: {grid_position: 'XKIYLM,FERQSZ'}
       name: label_3
-      properties: {bold: true, text: 'Session Name (To save or to load chat history) :'}
+      properties: {bold: true, font_size: 16, text: 'Session Name (To save or load a chat history) :'}
       type: Label
     - layout_properties: {grid_position: 'ARZTGL,OMBWQN'}
       name: petal_width
-      properties: {placeholder: Enter the session Name here}
+      properties: {font_size: 10, placeholder: Enter the session Name here}
       type: TextBox
     - layout_properties: {grid_position: 'WOQIPN,EUAPTI'}
       name: petal_length
-      properties: {enabled: false, placeholder: petal_lenght field to be reused}
+      properties: {background: 'theme:Secondary Container', enabled: false, font_size: 14, placeholder: petal_lenght field - used to send options to the BE}
       type: TextBox
     - event_bindings: {click: submitllm_click}
       layout_properties: {grid_position: 'SLVTKR,ZUBMEN'}
       name: submitllm
       properties:
+        font_size: 16
         icon: fa:android
         spacing:
           padding: [null, '22', null, null]
@@ -51,21 +44,21 @@ components:
     - event_bindings: {click: save_chat_click}
       layout_properties: {grid_position: 'SLVTKR,JJOGRJ'}
       name: save_chat
-      properties: {icon: 'fa:archive', text: Save Chat}
+      properties: {font_size: 16, icon: 'fa:archive', text: Save Chat}
       type: Button
     - event_bindings: {click: show_history_button_click}
       layout_properties: {grid_position: 'SLVTKR,PTRBNQ KDVLCM,UBITCE'}
       name: show_history_button
-      properties: {icon: 'fa:bars', text: Show saved Chats}
+      properties: {font_size: 16, icon: 'fa:bars', text: Show saved Chats}
       type: Button
     - event_bindings: {click: load_session_button_click}
       layout_properties: {grid_position: 'SLVTKR,PTRBNQ KDVLCM,CZEWEW'}
       name: load_session_button
-      properties: {text: 🔁 Load Chat History}
+      properties: {font_size: 16, text: 🔁 Load Chat History}
       type: Button
     - layout_properties: {grid_position: 'VHMUFH,LMDZGQ'}
       name: llmresponse
-      properties: {text: 'LLM response :'}
+      properties: {bold: true, font_size: 18, text: 'LLM response :', underline: true}
       type: Label
     - layout_properties: {grid_position: 'QRMAQD,AHCBEW'}
       name: species_label
