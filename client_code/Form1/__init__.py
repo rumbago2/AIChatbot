@@ -14,7 +14,7 @@ class Form1(Form1Template):
   def submitllm_click(self, **event_args):
     self._handle_prompt_submission()
 
-  def user_prompt_pressed_enter(self, **event_args):
+  def user_prompt1_pressed_enter(self, **event_args):
     self._handle_prompt_submission()
 
   def llm_name_change(self, **event_args):
