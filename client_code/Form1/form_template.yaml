@@ -7,7 +7,7 @@ components:
       type: Label
     - layout_properties: {grid_position: 'NKAJYH,RPIVIO'}
       name: user_prompt
-      properties: {font_size: 10, height: 171.89990234375, text: Enter your question/prompt here}
+      properties: {font_size: 14, height: 171.89990234375, text: Enter your question/prompt here}
       type: TextArea
     - layout_properties: {grid_position: 'CGYAPA,NLMTQI'}
       name: label_2
@@ -25,7 +25,7 @@ components:
       type: Label
     - layout_properties: {grid_position: 'ARZTGL,OMBWQN'}
       name: petal_width
-      properties: {font_size: 10, placeholder: Enter the session Name here}
+      properties: {font_size: 14, placeholder: Enter the session Name here}
       type: TextBox
     - layout_properties: {grid_position: 'WOQIPN,EUAPTI'}
       name: petal_length
