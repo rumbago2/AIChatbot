@@ -17,7 +17,7 @@ components:
       layout_properties: {grid_position: 'SRCNVM,HPZTMN'}
       name: llm_name
       properties:
-        items: [MetaP-gemini-2.5-flash-preview-05-20, gemini-2.5-flash-preview-05-20, gemini-2.5-pro-preview-06-05, gemini-2.0-flash-lite, gemini-2.5-pro, gemini-2.5-flash, deepseek, Llama-3.1, Qwen3, mistral, gpt-3.5-turbo, gpt-4.1, gpt-4-turbo, gpt-4o, gpt-4o-mini]
+        items: [MetaP-gemini-2.5-flash-preview-05-20, MetaP-gemini-2.5-pro, gemini-2.5-flash-preview-05-20, gemini-2.5-pro-preview-06-05, gemini-2.0-flash-lite, gemini-2.5-pro, gemini-2.5-flash, deepseek, Llama-3.1, Qwen3, mistral, gpt-3.5-turbo, gpt-4.1, gpt-4-turbo, gpt-4o, gpt-4o-mini]
       type: DropDown
     - layout_properties: {grid_position: 'XKIYLM,FERQSZ'}
       name: label_3
