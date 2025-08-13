@@ -11,6 +11,8 @@ class Form1(Form1Template):
     self.status_label.text = ""
     self.status_label.visible = False
 
+    # --- BEGIN: NEW METHOD FOR FILE UPLOAD ---
+    
   def submitllm_click(self, **event_args):
     self._handle_prompt_submission()
 
@@ -203,3 +205,45 @@ class Form1(Form1Template):
       print(f"CLIENT: Exception saving chat history: {e}")
       self.status_label.text = f"❌ Error saving chat: {e}"
       alert("An unexpected error occurred while saving the chat.")
+
+  def upload_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    session_name = self.petal_width.text.strip() # Use a field for the knowledge base name
+    files_to_upload = self.file_loader_1.files
+
+    if not session_name:
+      alert("Please enter a Session Name. This will be used to name your new knowledge base.", title="Input Required")
+      return
+
+    if not files_to_upload:
+      alert("Please select one or more PDF files to upload.", title="No Files Selected")
+      return
+
+    self.status_label.visible = True
+    self.status_label.text = f"⏳ Uploading {len(files_to_upload)} file(s) and building knowledge base '{session_name}'..."
+    self.upload_button.enabled = False
+
+    try:
+      # Call the backend with action_flag = 4
+      result = anvil.server.call(
+        'ask_llm',
+        action_flag=4,
+        session_name=session_name,
+        files=files_to_upload
+      )
+
+      if result and "error" in result:
+        self.status_label.text = f"❌ Error: {result['error']}"
+        alert(f"Could not process files: {result['error']}", title="Processing Failed")
+      else:
+        self.status_label.text = f"✅ Success! {result.get('message', 'Files processed.')}"
+        alert(result.get('message', 'Knowledge base created successfully!'), title="Success")
+        # Clear the file loader for the next upload
+        self.file_loader_1.clear()
+
+    except Exception as e:
+      self.status_label.text = f"❌ Anvil connection error: {e}"
+      alert(f"A connection error occurred. Please check the backend logs. Error: {e}", title="Connection Error")
+
+    finally:
+      self.upload_button.enabled = True
