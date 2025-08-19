@@ -48,7 +48,17 @@ class Form1(Form1Template):
     self.submitllm.enabled = False
 
     try:
-      result = anvil.server.call('ask_llm', user_prompt, llm_name, pl, pw, self.chat_history)
+      #result = anvil.server.call('ask_llm', user_prompt, llm_name, pl, pw, self.chat_history)
+      result = anvil.server.call(
+        'ask_llm',
+        user_prompt=user_prompt,
+        llm_name=llm_name,
+        action_flag=0,           # La acción principal es siempre 0
+        rag_session_name=pl,     # Nuevo argumento para RAG
+        save_session_name=pw,    # Nuevo argumento para guardar/cargar
+        chat_history=self.chat_history,
+        files=None
+      )
       if result is None:
         self.status_label.text = "❌ Error: Received an empty response from the server. Check backend logs."
         print("CLIENT: Server call returned None.")
@@ -107,7 +117,8 @@ class Form1(Form1Template):
                                user_prompt=None,
                                llm_name=None,
                                action_flag=2,
-                               session_name=None,
+                               rag_session_name=None,
+                               save_session_name=None,
                                chat_history=None)
 
       if result and "error" in result:
@@ -147,7 +158,8 @@ class Form1(Form1Template):
       user_prompt=None,
       llm_name=None,
       action_flag=3,
-      session_name=session_name,
+      rag_session_name=None,
+      save_session_name=session_name,
       chat_history=None
     )
       #print("CLIENT: Full result from backend:", result)
@@ -191,7 +203,8 @@ class Form1(Form1Template):
       user_prompt=None,
       llm_name=llm_name,
       action_flag=1,
-     session_name=session_name,
+      rag_session_name=None,
+      save_session_name=session_name,
       chat_history=self.chat_history
       )
 
@@ -231,7 +244,8 @@ class Form1(Form1Template):
       result = anvil.server.call(
         'ask_llm',
         action_flag=4,
-        session_name=session_name,
+        rag_session_name=session_name,
+        save_session_name=None,
         files=files_to_upload
       )
 
