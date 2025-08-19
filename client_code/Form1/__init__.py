@@ -36,7 +36,8 @@ class Form1(Form1Template):
         alert("The prompt and LLM model cannot be empty.", title="Input Error")
         return
 
-      pl = self.petal_length.text if self.petal_length.text else ""
+      #pl = self.petal_length.text if self.petal_length.text else ""
+      pl = int(self.petal_length.text) if self.petal_length.text else 0
       pw = self.petal_width.text if self.petal_width.text else ""
 
     except ValueError:
@@ -205,8 +206,8 @@ class Form1(Form1Template):
 
   def upload_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    #session_name = self.petal_width.text.strip() # Use a field for the knowledge base name
-    session_name = self.petal_length.text.strip()
+    session_name = self.petal_width.text.strip() # Use a field for the knowledge base name
+    #session_name = self.petal_length.text.strip()
     files_to_upload = self.file_loader_1.files
 
     if not session_name:
