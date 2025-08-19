@@ -205,11 +205,12 @@ class Form1(Form1Template):
 
   def upload_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    session_name = self.petal_width.text.strip() # Use a field for the knowledge base name
+    #session_name = self.petal_width.text.strip() # Use a field for the knowledge base name
+    session_name = self.petal_length.text.strip()
     files_to_upload = self.file_loader_1.files
 
     if not session_name:
-      alert("Please enter a Session Name. This will be used to name your new knowledge base.", title="Input Required")
+      alert("Please enter a RAG Session Name. This will be used to name your new knowledge base.", title="Input Required")
       return
 
     if not files_to_upload:
@@ -229,7 +230,7 @@ class Form1(Form1Template):
         files=files_to_upload
       )
 
-      if result and "error" in result:
+      if isinstance(result, dict) and "error" in result:
         self.status_label.text = f"❌ Error: {result['error']}"
         alert(f"Could not process files: {result['error']}", title="Processing Failed")
       else:
