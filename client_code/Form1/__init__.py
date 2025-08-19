@@ -36,7 +36,7 @@ class Form1(Form1Template):
         alert("The prompt and LLM model cannot be empty.", title="Input Error")
         return
 
-      pl = int(self.petal_length.text) if self.petal_length.text else 0
+      pl = self.petal_length.text if self.petal_length.text else ""
       pw = self.petal_width.text if self.petal_width.text else ""
 
     except ValueError:
@@ -110,9 +110,6 @@ class Form1(Form1Template):
        self.status_label.text = f"❌ Error: {result['error']}"
        alert(f"Could not load history: {result['error']}")
       else:
-        #self.history_grid.items = result['data']
-        #self.history_grid.items = [{'session_name': 'TEST12', 'llm_name': 'deepseek', 'first_prompt': 'what is the model name and ID answering this prompt?'}]
-        #self.history_grid.items = [{'session_name': 'sesion1', 'llm_name': 'mistral','first_prompt': 'my prompt'}, {'session_name': 'sesion2', 'llm_name': 'deepseek','first_prompt': 'my prompt 2'}]
         print("CLIENT: Data assigned to grid:")
         for row in result['data']:
          print(row)
