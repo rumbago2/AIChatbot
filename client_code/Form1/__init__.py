@@ -53,9 +53,9 @@ class Form1(Form1Template):
         'ask_llm',
         user_prompt=user_prompt,
         llm_name=llm_name,
-        action_flag=0,           # La acción principal es siempre 0
-        rag_session_name=pl,     # Nuevo argumento para RAG
-        save_session_name=pw,    # Nuevo argumento para guardar/cargar
+        action_flag=0,
+        rag_session_name=pl,
+        save_session_name=pw,
         chat_history=self.chat_history,
         files=None
       )
@@ -113,13 +113,16 @@ class Form1(Form1Template):
       self.chat_history = []
       self.chat_display.content = ""
     # Call the backend function with action_flag = 2
-      result = anvil.server.call('ask_llm',
-                               user_prompt=None,
-                               llm_name=None,
-                               action_flag=2,
-                               rag_session_name=None,
-                               save_session_name=None,
-                               chat_history=None)
+      result = anvil.server.call(
+        'ask_llm',
+        action_flag=2,
+        user_prompt=None,
+        llm_name=None,
+        rag_session_name=None,
+        save_session_name=None,
+        chat_history=None,
+        files=None
+      )
 
       if result and "error" in result:
        print(f"CLIENT: Server returned error: {result['error']}")
@@ -154,14 +157,15 @@ class Form1(Form1Template):
     self.status_label.text = f"⏳ Loading chat history for session: {session_name}..."
     try:
       result = anvil.server.call(
-      'ask_llm',
-      user_prompt=None,
-      llm_name=None,
-      action_flag=3,
-      rag_session_name=None,
-      save_session_name=session_name,
-      chat_history=None
-    )
+        'ask_llm',
+        action_flag=3,
+        user_prompt=None,
+        llm_name=None,
+        rag_session_name=None,
+        save_session_name=session_name,
+        chat_history=None,
+        files=None
+      )
       #print("CLIENT: Full result from backend:", result)
       if result and "error" in result:
        self.status_label.text = f"❌ Error: {result['error']}"
@@ -199,13 +203,14 @@ class Form1(Form1Template):
 
     try:
       result = anvil.server.call(
-      'ask_llm',
-      user_prompt=None,
-      llm_name=llm_name,
-      action_flag=1,
-      rag_session_name=None,
-      save_session_name=session_name,
-      chat_history=self.chat_history
+        'ask_llm',
+        action_flag=1,
+        user_prompt=None,
+        llm_name=llm_name,
+        rag_session_name=None,
+        save_session_name=session_name,
+        chat_history=self.chat_history,
+        files=None
       )
 
       if result and "error" in result:
@@ -246,6 +251,9 @@ class Form1(Form1Template):
         action_flag=4,
         rag_session_name=session_name,
         save_session_name=None,
+        user_prompt=None,
+        llm_name=None,
+        chat_history=None,
         files=files_to_upload
       )
 
