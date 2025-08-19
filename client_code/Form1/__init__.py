@@ -28,21 +28,20 @@ class Form1(Form1Template):
 
   def _handle_prompt_submission(self):
     """Envía el prompt al LLM y actualiza el historial."""
-    try:
-      user_prompt = self.user_prompt.text.strip()
-      llm_name = self.llm_name.selected_value
+    user_prompt = self.user_prompt.text.strip()
+    llm_name = self.llm_name.selected_value
 
-      if not user_prompt or not llm_name:
+    if not user_prompt or not llm_name:
         alert("The prompt and LLM model cannot be empty.", title="Input Error")
         return
 
-      #pl = self.petal_length.text if self.petal_length.text else ""
-      pl = int(self.petal_length.text) if self.petal_length.text else 0
-      pw = self.petal_width.text if self.petal_width.text else ""
+    #pl = int(self.petal_length.text) if self.petal_length.text else 0
+    pl = self.petal_length.text if self.petal_length.text else ""
+    pw = self.petal_width.text if self.petal_width.text else ""
 
-    except ValueError:
-      alert("Option should be integer and session name text.", title="Input Error")
-      return
+    #except ValueError:
+     # alert("Option should be integer and session name text.", title="Input Error")
+     # return
 
     self.status_label.visible = True
     self.status_label.text = "🤖 Generating response, please wait..."
@@ -50,7 +49,12 @@ class Form1(Form1Template):
 
     try:
       result = anvil.server.call('ask_llm', user_prompt, llm_name, pl, pw, self.chat_history)
-
+      if result is None:
+        self.status_label.text = "❌ Error: Received an empty response from the server. Check backend logs."
+        print("CLIENT: Server call returned None.")
+        # We use 'finally' to re-enable the button, so we can just return here.
+        return
+        
       if "error" in result:
         self.status_label.text = f"❌ Error from backend: {result['error']}"
       else:
@@ -206,8 +210,8 @@ class Form1(Form1Template):
 
   def upload_button_click(self, **event_args):
     """This method is called when the button is clicked"""
-    session_name = self.petal_width.text.strip()
-    #session_name = self.petal_length.text.strip()
+    #session_name = self.petal_width.text.strip()
+    session_name = self.petal_length.text.strip()
     files_to_upload = self.file_loader_1.files
 
     if not session_name:
