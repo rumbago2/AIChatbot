@@ -27,13 +27,17 @@ components:
       name: petal_width
       properties: {font_size: 14, placeholder: Enter the chat session name here}
       type: TextBox
+    - layout_properties: {grid_position: 'GMJNVS,LFPSEU'}
+      name: label_4
+      properties: {text: RAG Sessions (previously uploaded files)}
+      type: Label
     - layout_properties: {grid_position: 'WOQIPN,EUAPTI'}
       name: petal_length
       properties: {background: 'theme:Secondary Container', enabled: true, font_size: 14, placeholder: Enter the RAG session name here.., visible: true}
       type: TextBox
     - layout_properties: {grid_position: 'WOQIPN,JTREEX QYAZKE,NMGPLR'}
       name: file_loader_1
-      properties: {}
+      properties: {text: Upload a file}
       type: FileLoader
     - event_bindings: {click: upload_button_click}
       layout_properties: {grid_position: 'WOQIPN,JTREEX QYAZKE,OPVXPB'}
@@ -53,7 +57,7 @@ components:
     - event_bindings: {click: save_chat_click}
       layout_properties: {grid_position: 'SLVTKR,JJOGRJ'}
       name: save_chat
-      properties: {font_size: 16, icon: 'fa:archive', text: Save Chat}
+      properties: {font_size: 16, icon: 'fa:archive', text: Save Chat in the DB}
       type: Button
     - event_bindings: {click: show_history_button_click}
       layout_properties: {grid_position: 'SLVTKR,PTRBNQ KDVLCM,UBITCE'}
